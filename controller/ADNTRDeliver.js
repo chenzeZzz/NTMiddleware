@@ -11,7 +11,7 @@ module.exports = function(e) {
 	if (!r.checkIsNull(a.autorun_config[u])) {
 		f = a.autorun_config[u]
 	}
-	var l = function() {
+	var sendTask = function() {
 			global.logger.warn(s + "sendTask")
 		};
 	var c = function() {
@@ -125,31 +125,31 @@ module.exports = function(e) {
 	if (f) {
 		c()
 	}
-	var v = function() {
+	var getTag = function() {
 			return u
 		};
-	var d = function() {
+	var isStarted = function() {
 			return f
 		};
-	var k = function() {
+	var isBanned = function() {
 			return i
 		};
-	var b = function(e) {
+	var startServer = function(e) {
 			f = true;
 			c();
 			e(100, u + " Started")
 		};
-	var T = function(e) {
+	var stopServer = function(e) {
 			f = false;
 			g();
 			e(100, u + " Stopped")
 		};
 	return {
-		getTag: v,
-		isStarted: d,
-		isBanned: k,
-		startServer: b,
-		stopServer: T,
-		sendTask: l
+		getTag: getTag,
+		isStarted: isStarted,
+		isBanned: isBanned,
+		startServer: startServer,
+		stopServer: stopServer,
+		sendTask: sendTask
 	}
 };

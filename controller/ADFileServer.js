@@ -3,37 +3,37 @@ module.exports = function() {
 	var e = require("fs");
 	var t = r.basename(__filename, ".js");
 	var n = false;
-	var a = function(r) {
+	var startServer = function(r) {
 			n = true;
 			r(100, t + " Started")
 		};
-	var i = function(r) {
+	var stopServer = function(r) {
 			n = false;
 			r(100, t + " Stopped")
 		};
-	var u = function() {
+	var isStarted = function() {
 			return n
 		};
-	var f = function(r, t) {
+	var listDir = function(path, t) {
 			if (!n) {
 				t(201);
 				return
 			}
-			e.readdir(r, function(r, e) {
-				if (r) {
-					t(201, r)
+			e.readdir(path, function(err, files) {
+				if (err) {
+					t(201, err)
 				} else {
-					t(100, e)
+					t(100, files)
 				}
 			})
 		};
-	var o = function(r) {};
+	var listFile = function(r) {};
 	var s = function(r) {};
 	return {
-		startServer: a,
-		stopServer: i,
-		isStarted: u,
-		listDir: f,
-		listFile: o
+		startServer: startServer,
+		stopServer: stopServer,
+		isStarted: isStarted,
+		listDir: listDir,
+		listFile: listFile
 	}
 };
